@@ -20,8 +20,39 @@ T mypair<T>::getmax () //T2: type returned by the function. T3: specifies that t
   return retval;
 }
 
+
+// template specialization
+template <class T1> 
+class mycontainer {
+  T1 element;
+public:
+  mycontainer (T1 arg) {element=arg;}
+  T1 increase () {return ++element;}
+};
+
+// class template specialization:
+template <>
+class mycontainer <char> {
+  char element;
+public:
+  mycontainer (char arg) {element=arg;}
+  char uppercase ()
+  {
+    if ((element>='a')&&(element<='z'))
+      element+='A'-'a';
+    return element;
+  }
+};
+
+
+
 int main () {
   mypair <int> myobject (100, 75);
-  cout << myobject.getmax()<< endl;;
+  cout <<"myobject.getmax " << myobject.getmax()<< endl;;
+
+  mycontainer<int> myint (7);
+  mycontainer<char> mychar ('j');
+  cout << "myint.increase 7 " <<  myint.increase() << endl;
+  cout << "mychar.uppercase j " <<  mychar.uppercase() << endl;
   return 0;
 }
