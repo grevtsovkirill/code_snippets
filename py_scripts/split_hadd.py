@@ -12,7 +12,9 @@ mypath = vars(args)["path"]
 n_split = vars(args)["nsplit"]
 
 #mypath = 'user.kgrevtso.410470.PhPy8EG.DAOD_TOPQ1.e6337_s3126_r10201_p3832.1103_MCTrC_v0_output_root'
-dsid = mypath[14:20]
+getdsid = mypath[5:]
+dsid_cut = getdsid.find(".")
+dsid = getdsid[dsid_cut+1:dsid_cut+7]
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 n_div=len(onlyfiles)/n_split+1
