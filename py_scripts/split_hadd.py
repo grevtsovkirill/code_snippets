@@ -10,7 +10,6 @@ args = parser.parse_args()
 
 mypath = vars(args)["path"]
 n_split = vars(args)["nsplit"]
-
 #mypath = 'user.kgrevtso.410470.PhPy8EG.DAOD_TOPQ1.e6337_s3126_r10201_p3832.1103_MCTrC_v0_output_root'
 getdsid = mypath[5:]
 dsid_cut = getdsid.find(".")
@@ -18,7 +17,13 @@ dsid = getdsid[dsid_cut+1:dsid_cut+7]
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 n_div=len(onlyfiles)/n_split+1
-print(n_div)
+print(onlyfiles)
+
+print("Nfiles=",len(onlyfiles),"; nsplit=",n_split,"; n_div=",n_div)
+
+if (n_div)<2*n_split:
+     parser.error("Too fine granularity (not enough files to make proper split) - try to reduce n_split option with flag --nsplit or merge to one file")
+
 
 lll = [onlyfiles[i:i + n_div] for i in range(0, len(onlyfiles),n_div )]
 
