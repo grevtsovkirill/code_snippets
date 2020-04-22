@@ -21,7 +21,7 @@ print(onlyfiles)
 
 print("Nfiles=",len(onlyfiles),"; nsplit=",n_split,"; n_div=",n_div)
 
-if (n_div)<2*n_split:
+if (n_div)<n_split:
      parser.error("Too fine granularity (not enough files to make proper split) - try to reduce n_split option with flag --nsplit or merge to one file")
 
 
