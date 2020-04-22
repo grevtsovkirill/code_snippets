@@ -7,6 +7,8 @@ samples = ['413008_ttw','410155_ttw','410472_ttbar','410156_ttZnunu','410157_ttZ
            '304014_threeTop','410080_fourTop','410081_ttww','410408_WtZ']
 samples = ['410155_ttw','413008_ttw','700000_ttw'] 
 
+samples = ['413008'] 
+
 userid = 'pfalke'
 camps = ['']
 if do_campaign:
@@ -15,7 +17,13 @@ if do_campaign:
 
 for camp in camps:
     for itt in samples:
-        dsid_cut = itt.find("_")
+        if "_" in itt:
+            print("underscore")
+            dsid_cut = itt.find("_")
+        else:
+            print("empty")
+            dsid_cut = 6
+        
         dsid = itt[:dsid_cut]
         if do_campaign:
             r_tag = camp
@@ -30,7 +38,7 @@ for camp in camps:
         if fold_name:
             if os.path.exists(fold_name[0]) and not os.path.exists(itt+'.root'):
                 print(command)
-                os.system(command)
+                #os.system(command)
                 print(" ========================== ")
             else:
                 print('File '+itt+'.root exists')
