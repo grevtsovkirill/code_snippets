@@ -7,6 +7,7 @@ samples = ['413008_ttw','410155_ttw','410472_ttbar','410156_ttZnunu','410157_ttZ
            '304014_threeTop','410080_fourTop','410081_ttww','410408_WtZ']
 samples = ['410155_ttw','413008_ttw','700000_ttw'] 
 
+userid = 'pfalke'
 camps = ['']
 if do_campaign:
     tag_camp_dict = {'r9364':'a','r10201':'d','r10724':'e'}
@@ -22,9 +23,9 @@ for camp in camps:
         else: 
             r_tag = ''
             fname = itt
-        fold_name0 = 'user.kgrevtso.'+dsid+'.*'+r_tag+'*'
+        fold_name0 = 'user.'+userid+'.'+dsid+'.*'+r_tag+'*'
         fold_name = glob.glob(fold_name0)
-        command = 'hadd '+fname+'.root user.kgrevtso.'+dsid+'.*'+r_tag+'*/user.*.root'
+        command = 'hadd '+fname+'.root user.'+userid+'.'+dsid+'.*'+r_tag+'*/user.*.root'
         print(dsid_cut,fold_name)
         if fold_name:
             if os.path.exists(fold_name[0]) and not os.path.exists(itt+'.root'):
